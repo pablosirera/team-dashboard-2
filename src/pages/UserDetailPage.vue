@@ -67,38 +67,41 @@ const user = computed(() => users.find((person) => person.id === userId))
       </button>
     </div>
 
-    <article
-      class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-      v-if="user"
-    >
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" v-if="user">
       <dl class="grid gap-6 md:grid-cols-2">
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Nombre</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Nombre</dt>
           <dd class="mt-1 text-lg font-medium text-slate-900">{{ user.name }}</dd>
         </div>
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Email</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Email</dt>
           <dd class="mt-1 text-lg font-medium text-slate-900">{{ user.email }}</dd>
         </div>
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Rol</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Rol</dt>
           <dd class="mt-1 text-lg font-medium text-slate-900">{{ user.role }}</dd>
         </div>
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Estado</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Estado</dt>
           <dd
             class="mt-1 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold"
-            :class="user.status === 'Inactivo' ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'"
+            :class="
+              user.status === 'Inactivo'
+                ? 'bg-rose-50 text-rose-600'
+                : 'bg-emerald-50 text-emerald-600'
+            "
           >
             {{ user.status }}
           </dd>
         </div>
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Fecha de alta</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">
+            Fecha de alta
+          </dt>
           <dd class="mt-1 text-lg font-medium text-slate-900">{{ user.joinedAt }}</dd>
         </div>
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">ID</dt>
+          <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">ID</dt>
           <dd class="mt-1 text-lg font-medium text-slate-900">{{ user.id }}</dd>
         </div>
       </dl>
@@ -108,7 +111,8 @@ const user = computed(() => users.find((person) => person.id === userId))
       v-else
       class="rounded-2xl border border-dashed border-rose-200 bg-rose-50 p-6 text-rose-700"
     >
-      No encontramos información para el usuario con id <strong>{{ userId }}</strong>.
+      No encontramos información para el usuario con id <strong>{{ userId }}</strong
+      >.
     </article>
   </section>
 </template>

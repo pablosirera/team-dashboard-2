@@ -23,20 +23,20 @@ const recentUsers = [
 
     <div class="grid gap-6 md:grid-cols-2">
       <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <p class="text-sm font-medium uppercase tracking-wide text-slate-400">Número de usuarios</p>
+        <p class="text-sm font-medium tracking-wide text-slate-400 uppercase">Número de usuarios</p>
         <p class="mt-3 text-4xl font-semibold text-slate-900">{{ metrics.totalUsers }}</p>
         <p class="mt-1 text-sm text-slate-500">Usuarios registrados en la plataforma.</p>
       </article>
 
       <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <p class="text-sm font-medium uppercase tracking-wide text-slate-400">Actividad</p>
+        <p class="text-sm font-medium tracking-wide text-slate-400 uppercase">Actividad</p>
         <div class="mt-4 grid grid-cols-2 gap-4">
           <div>
-            <p class="text-xs uppercase tracking-wide text-slate-500">Activos</p>
+            <p class="text-xs tracking-wide text-slate-500 uppercase">Activos</p>
             <p class="mt-1 text-3xl font-semibold text-emerald-600">{{ metrics.activeUsers }}</p>
           </div>
           <div>
-            <p class="text-xs uppercase tracking-wide text-slate-500">Inactivos</p>
+            <p class="text-xs tracking-wide text-slate-500 uppercase">Inactivos</p>
             <p class="mt-1 text-3xl font-semibold text-rose-500">{{ metrics.inactiveUsers }}</p>
           </div>
         </div>
@@ -47,7 +47,7 @@ const recentUsers = [
     <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-sm font-medium uppercase tracking-wide text-slate-400">Últimos usuarios</p>
+          <p class="text-sm font-medium tracking-wide text-slate-400 uppercase">Últimos usuarios</p>
           <p class="text-lg font-semibold text-slate-900">Actividad reciente</p>
         </div>
         <RouterLink
@@ -59,15 +59,23 @@ const recentUsers = [
       </div>
 
       <ul class="mt-6 divide-y divide-slate-100">
-        <li v-for="user in recentUsers" :key="user.id" class="flex items-center justify-between py-3">
+        <li
+          v-for="user in recentUsers"
+          :key="user.id"
+          class="flex items-center justify-between py-3"
+        >
           <div>
             <p class="font-medium text-slate-900">{{ user.name }}</p>
             <p class="text-sm text-slate-500">{{ user.role }}</p>
           </div>
           <div class="text-right">
             <p
-              class="text-xs font-semibold uppercase tracking-wide"
-              :class="user.status === 'Activa' || user.status === 'Activo' ? 'text-emerald-600' : 'text-rose-500'"
+              class="text-xs font-semibold tracking-wide uppercase"
+              :class="
+                user.status === 'Activa' || user.status === 'Activo'
+                  ? 'text-emerald-600'
+                  : 'text-rose-500'
+              "
             >
               {{ user.status }}
             </p>

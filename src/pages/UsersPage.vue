@@ -70,7 +70,7 @@ const filteredUsers = computed(() => {
             v-model="searchTerm"
             type="search"
             placeholder="Buscar por nombre"
-            class="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
+            class="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-slate-400 focus:ring-2 focus:ring-slate-200 focus:outline-none"
           />
         </label>
       </div>
@@ -94,7 +94,11 @@ const filteredUsers = computed(() => {
             <div class="flex items-center gap-4">
               <span
                 class="rounded-full px-3 py-1 text-xs font-semibold"
-                :class="user.status === 'Inactivo' ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'"
+                :class="
+                  user.status === 'Inactivo'
+                    ? 'bg-rose-50 text-rose-600'
+                    : 'bg-emerald-50 text-emerald-600'
+                "
               >
                 {{ user.status }}
               </span>
