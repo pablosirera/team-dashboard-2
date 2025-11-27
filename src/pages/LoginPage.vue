@@ -1,10 +1,11 @@
-<script setup>
+<script setup lang="ts">
+import BaseInput from '@/components/BaseInput.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const email = ref('')
-const password = ref('')
+const email = ref<string>('')
+const password = ref<string>('')
 
 const handleSubmit = () => {
   router.push('/dashboard')
@@ -21,27 +22,15 @@ const handleSubmit = () => {
       </div>
 
       <form class="space-y-4" @submit.prevent="handleSubmit">
-        <label class="block">
-          <span class="text-sm font-medium text-slate-700">Email</span>
-          <input
-            v-model="email"
-            type="email"
-            placeholder="tu@email.com"
-            class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-slate-400 focus:ring-2 focus:ring-slate-200 focus:outline-none"
-            required
-          />
-        </label>
+        <BaseInput v-model="email" label="Email" type="email" placeholder="tu@email.com" required />
 
-        <label class="block">
-          <span class="text-sm font-medium text-slate-700">Password</span>
-          <input
-            v-model="password"
-            type="password"
-            placeholder="••••••••"
-            class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-slate-400 focus:ring-2 focus:ring-slate-200 focus:outline-none"
-            required
-          />
-        </label>
+        <BaseInput
+          v-model="password"
+          label="Password"
+          type="password"
+          placeholder="••••••••"
+          required
+        />
 
         <button
           type="submit"

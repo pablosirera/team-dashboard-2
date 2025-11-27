@@ -1,13 +1,27 @@
-<script setup>
+<script setup lang="ts">
+import { User } from '@/types/User'
 import { RouterLink } from 'vue-router'
-const metrics = {
+
+interface Metrics {
+  totalUsers: number
+  activeUsers: number
+  inactiveUsers: number
+}
+
+const metrics: Metrics = {
   totalUsers: 128,
   activeUsers: 102,
   inactiveUsers: 26,
 }
 
-const recentUsers = [
-  { id: 1, name: 'María Sánchez', role: 'Product Manager', status: 'Activa', joinedAt: 'Hace 2h' },
+const recentUsers: User[] = [
+  {
+    id: 1,
+    name: 'María Sánchez',
+    role: 'Product Manager',
+    status: 'Activa',
+    joinedAt: 'Hace 2h',
+  },
   { id: 2, name: 'Luis Romero', role: 'Diseñador', status: 'Inactivo', joinedAt: 'Ayer' },
   { id: 3, name: 'Daniel Ríos', role: 'Backend', status: 'Activo', joinedAt: 'Hace 3 días' },
   { id: 4, name: 'Camila Vega', role: 'Marketing', status: 'Activo', joinedAt: 'Hace 1 semana' },

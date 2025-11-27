@@ -1,11 +1,12 @@
-<script setup>
+<script setup lang="ts">
+import { User } from '@/types/User'
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
 const route = useRoute()
 const userId = route.params.id
 
-const users = [
+const users: User[] = [
   {
     id: 'u-101',
     name: 'María Sánchez',

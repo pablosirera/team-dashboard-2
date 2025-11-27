@@ -1,8 +1,9 @@
-<script setup>
+<script setup lang="ts">
+import { User } from '@/types/User'
 import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
-const users = [
+const users: User[] = [
   {
     id: 'u-101',
     name: 'María Sánchez',
@@ -33,7 +34,7 @@ const users = [
   },
 ]
 
-const searchTerm = ref('')
+const searchTerm = ref<string>('')
 
 const filteredUsers = computed(() => {
   const term = searchTerm.value.trim().toLowerCase()
