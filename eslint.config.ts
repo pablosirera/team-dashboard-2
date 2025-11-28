@@ -1,6 +1,5 @@
 import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
-import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import tseslint from 'typescript-eslint'
 import vueParser from 'vue-eslint-parser'
@@ -20,7 +19,7 @@ export default defineConfig([
       },
     },
   },
-  ...pluginVue.configs['flat/essential'],
+  ...pluginVue.configs['flat/recommended'],
   {
     files: ['**/*.vue'],
     languageOptions: {
@@ -43,6 +42,5 @@ export default defineConfig([
       },
     },
   },
-  js.configs.recommended,
   skipFormatting,
 ])

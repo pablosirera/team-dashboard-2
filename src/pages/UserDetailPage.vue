@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { User } from '@/types/User'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
 const route = useRoute()
 const userId = route.params.id
 
-const users: User[] = [
+const users = ref<User[]>([
   {
-    id: 'u-101',
+    id: '1',
     name: 'María Sánchez',
     email: 'maria.sanchez@example.com',
     role: 'Product Manager',
@@ -39,9 +39,9 @@ const users: User[] = [
     status: 'Activa',
     joinedAt: '7 de abril, 2021',
   },
-]
+])
 
-const user = computed(() => users.find((person) => person.id === userId))
+const user = computed(() => users.value.find((person) => person.id === userId))
 </script>
 
 <template>
@@ -68,7 +68,7 @@ const user = computed(() => users.find((person) => person.id === userId))
       </button>
     </div>
 
-    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" v-if="user">
+    <article v-if="user" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <dl class="grid gap-6 md:grid-cols-2">
         <div>
           <dt class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Nombre</dt>

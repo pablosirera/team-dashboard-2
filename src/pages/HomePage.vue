@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { User } from '@/types/User'
+import { useUsers } from '@/composables/useUsers'
 import { RouterLink } from 'vue-router'
 
 interface Metrics {
@@ -14,18 +14,7 @@ const metrics: Metrics = {
   inactiveUsers: 26,
 }
 
-const recentUsers: User[] = [
-  {
-    id: 1,
-    name: 'María Sánchez',
-    role: 'Product Manager',
-    status: 'Activa',
-    joinedAt: 'Hace 2h',
-  },
-  { id: 2, name: 'Luis Romero', role: 'Diseñador', status: 'Inactivo', joinedAt: 'Ayer' },
-  { id: 3, name: 'Daniel Ríos', role: 'Backend', status: 'Activo', joinedAt: 'Hace 3 días' },
-  { id: 4, name: 'Camila Vega', role: 'Marketing', status: 'Activo', joinedAt: 'Hace 1 semana' },
-]
+const { state: users } = useUsers()
 </script>
 
 <template>
@@ -73,11 +62,7 @@ const recentUsers: User[] = [
       </div>
 
       <ul class="mt-6 divide-y divide-slate-100">
-        <li
-          v-for="user in recentUsers"
-          :key="user.id"
-          class="flex items-center justify-between py-3"
-        >
+        <li v-for="user in users" :key="user.id" class="flex items-center justify-between py-3">
           <div>
             <p class="font-medium text-slate-900">{{ user.name }}</p>
             <p class="text-sm text-slate-500">{{ user.role }}</p>
