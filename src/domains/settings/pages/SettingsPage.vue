@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SettingsForm from '@/components/SettingsForm.vue'
+import SettingsForm from '@settings/components/SettingsForm.vue'
 import { ref } from 'vue'
 
 const formRef = ref<InstanceType<typeof SettingsForm> | null>(null)

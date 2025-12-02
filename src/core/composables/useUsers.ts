@@ -1,4 +1,4 @@
-import { User } from '@/types/User'
+import { User } from '@core/types/User'
 import { computed, readonly, ref } from 'vue'
 
 const internalState = ref<User[]>([])

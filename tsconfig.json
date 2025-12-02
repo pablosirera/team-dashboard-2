@@ -16,7 +16,12 @@
     "types": ["vite/client", "node"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@core/*": ["src/core/*"],
+      "@auth/*": ["src/domains/auth/*"],
+      "@dashboard/*": ["src/domains/dashboard/*"],
+      "@settings/*": ["src/domains/settings/*"],
+      "@users/*": ["src/domains/users/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.*"]

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NavLink } from '@/types/Navigation'
+import { NavLink } from '@core/types/Navigation'
 
 interface BaseSidebarProps {
   navLinks: NavLink[]
@@ -22,9 +22,9 @@ withDefaults(defineProps<BaseSidebarProps>(), {
       <RouterLink
         v-for="item in navLinks"
         :key="item.to"
+        v-slot="{ isActive }"
         :to="item.to"
         class="block rounded-lg px-3 py-2 text-sm font-medium transition"
-        v-slot="{ isActive }"
         :class="isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'"
       >
         <div class="flex items-center gap-3">

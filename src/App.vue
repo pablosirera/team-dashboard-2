@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { HomeIcon, UserGroupIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
-import BaseSidebar from './components/BaseSidebar.vue'
-import { NavLink } from './types/Navigation'
+import BaseSidebar from '@core/components/BaseSidebar.vue'
+import { NavLink } from '@core/types/Navigation'
 
 const navLinks: NavLink[] = [
   { label: 'Home', to: '/dashboard', icon: HomeIcon },
@@ -15,7 +15,7 @@ const currentUser = 'Pablo Sirera'
 
 <template>
   <div class="flex min-h-screen bg-slate-50 text-slate-900">
-    <BaseSidebar :nav-links="navLinks" />
+    <BaseSidebar :nav-links="navLinks" :current-user="currentUser" />
 
     <main class="flex-1 p-8">
       <RouterView />

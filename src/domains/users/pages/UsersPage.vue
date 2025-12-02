@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import BaseList from '@/components/BaseList.vue'
-import { useFetch } from '@/composables/useFetch'
-import { useUsers } from '@/composables/useUsers'
-import { User } from '@/types/User'
-import { computed } from 'vue'
+import BaseInput from '@core/components/BaseInput.vue'
+import BaseList from '@core/components/BaseList.vue'
+import BaseModal from '@core/components/BaseModal.vue'
+import { useFetch } from '@core/composables/useFetch'
+import { useUsers } from '@core/composables/useUsers'
+import { User } from '@/core/types/User'
+import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -12,6 +14,12 @@ const { data: usersData, execute } = useFetch<User[]>(
   'https://jsonplaceholder.typicode.com/users',
   setUsers,
 )
+
+const isNewUserModalOpen = ref(false)
+const newUser = reactive<Partial<User>>({
+  name: '',
+  email: '',
+})
 
 const users = computed(() => usersData.value || [])
 
@@ -31,6 +39,7 @@ const goToUserDetail = (user: User) => {
       <button
         type="button"
         class="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+        @click="isNewUserModalOpen = true"
       >
         Crear usuario
       </button>
@@ -87,4 +96,25 @@ const goToUserDetail = (user: User) => {
       </div>
     </div>
   </section>
+
+  <BaseModal
+    v-model:open="isNewUserModalOpen"
+    title="Crear nuevo usuario"
+    @close="isNewUserModalOpen = false"
+  >
+    <template #default>
+      <BaseInput
+        v-model="newUser.name"
+        label="Nombre"
+        placeholder="Escribe el nombre del usuario"
+        required
+      />
+      <BaseInput
+        v-model="newUser.email"
+        label="Email"
+        placeholder="Escribe el email del usuario"
+        required
+      />
+    </template>
+  </BaseModal>
 </template>

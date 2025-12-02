@@ -95,18 +95,18 @@ defineExpose({
         <div class="mt-3 space-y-2 rounded-xl border border-slate-200 p-4">
           <label class="flex cursor-pointer items-center gap-3">
             <input
+              v-model="settings.theme"
               type="radio"
               value="light"
-              v-model="settings.theme"
               class="h-4 w-4 text-slate-900 focus:ring-slate-500"
             />
             <span class="text-sm text-slate-700">Claro</span>
           </label>
           <label class="flex cursor-pointer items-center gap-3">
             <input
+              v-model="settings.theme"
               type="radio"
               value="dark"
-              v-model="settings.theme"
               class="h-4 w-4 text-slate-900 focus:ring-slate-500"
             />
             <span class="text-sm text-slate-700">Oscuro</span>
@@ -117,8 +117,8 @@ defineExpose({
 
     <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4">
       <input
-        type="checkbox"
         v-model="settings.weeklySummary"
+        type="checkbox"
         class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-500"
       />
       <span>
