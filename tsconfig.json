@@ -21,7 +21,8 @@
       "@auth/*": ["src/domains/auth/*"],
       "@dashboard/*": ["src/domains/dashboard/*"],
       "@settings/*": ["src/domains/settings/*"],
-      "@users/*": ["src/domains/users/*"]
+      "@users/*": ["src/domains/users/*"],
+      "@comments/*": ["src/domains/comments/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.*"]

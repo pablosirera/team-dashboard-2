@@ -19,21 +19,19 @@ withDefaults(defineProps<BaseSidebarProps>(), {
     </div>
 
     <nav class="mt-4 space-y-1 px-2">
-      <RouterLink
-        v-for="item in navLinks"
-        :key="item.to"
-        v-slot="{ isActive }"
-        :to="item.to"
-        class="block rounded-lg px-3 py-2 text-sm font-medium transition"
-        :class="isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'"
-      >
-        <div class="flex items-center gap-3">
-          <component
-            :is="item.icon"
-            class="h-5 w-5"
-            :class="isActive ? 'text-slate-900' : 'text-slate-400'"
-          />
-          <span>{{ item.label }}</span>
+      <RouterLink v-for="item in navLinks" :key="item.to" v-slot="{ isActive }" :to="item.to">
+        <div
+          class="block rounded-lg px-3 py-2 text-sm font-medium transition"
+          :class="isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'"
+        >
+          <div class="flex items-center gap-3">
+            <component
+              :is="item.icon"
+              class="h-5 w-5"
+              :class="isActive ? 'text-slate-900' : 'text-slate-400'"
+            />
+            <span>{{ item.label }}</span>
+          </div>
         </div>
       </RouterLink>
     </nav>

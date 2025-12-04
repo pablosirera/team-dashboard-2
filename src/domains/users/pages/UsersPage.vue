@@ -7,6 +7,7 @@ import { useUsers } from '@core/composables/useUsers'
 import { User } from '@/core/types/User'
 import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { ROUTES_NAMES } from '@/core/constants/routes'
 
 const router = useRouter()
 const { setUsers, filteredUsers, search } = useUsers()
@@ -24,7 +25,7 @@ const newUser = reactive<Partial<User>>({
 const users = computed(() => usersData.value || [])
 
 const goToUserDetail = (user: User) => {
-  router.push(`/users/${user.id}`)
+  router.push({ name: ROUTES_NAMES.USER_DETAIL, params: { id: user.id } })
 }
 </script>
 
@@ -95,26 +96,26 @@ const goToUserDetail = (user: User) => {
         </BaseList>
       </div>
     </div>
-  </section>
 
-  <BaseModal
-    v-model:open="isNewUserModalOpen"
-    title="Crear nuevo usuario"
-    @close="isNewUserModalOpen = false"
-  >
-    <template #default>
-      <BaseInput
-        v-model="newUser.name"
-        label="Nombre"
-        placeholder="Escribe el nombre del usuario"
-        required
-      />
-      <BaseInput
-        v-model="newUser.email"
-        label="Email"
-        placeholder="Escribe el email del usuario"
-        required
-      />
-    </template>
-  </BaseModal>
+    <BaseModal
+      v-model:open="isNewUserModalOpen"
+      title="Crear nuevo usuario"
+      @close="isNewUserModalOpen = false"
+    >
+      <template #default>
+        <BaseInput
+          v-model="newUser.name"
+          label="Nombre"
+          placeholder="Escribe el nombre del usuario"
+          required
+        />
+        <BaseInput
+          v-model="newUser.email"
+          label="Email"
+          placeholder="Escribe el email del usuario"
+          required
+        />
+      </template>
+    </BaseModal>
+  </section>
 </template>

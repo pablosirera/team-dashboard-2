@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T extends { id: string | number }">
 defineProps<{
-  items: T[]
+  items: T[] | readonly T[]
 }>()
 
 const emit = defineEmits<{

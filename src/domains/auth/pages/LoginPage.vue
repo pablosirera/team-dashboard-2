@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { useAuth } from '@/core/composables/useAuth'
+import { ROUTES_NAMES } from '@/core/constants/routes'
 import BaseInput from '@core/components/BaseInput.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const { login } = useAuth()
 const email = ref<string>('')
 const password = ref<string>('')
 
 const handleSubmit = () => {
-  router.push('/dashboard')
+  login()
+  router.push({ name: ROUTES_NAMES.DASHBOARD })
 }
 </script>
 

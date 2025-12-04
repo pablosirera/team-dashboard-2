@@ -15,6 +15,7 @@ export default defineConfig({
       '@auth': fileURLToPath(new URL('./src/domains/auth', import.meta.url)),
       '@dashboard': fileURLToPath(new URL('./src/domains/dashboard', import.meta.url)),
       '@settings': fileURLToPath(new URL('./src/domains/settings', import.meta.url)),
+      '@comments': fileURLToPath(new URL('./src/domains/comments', import.meta.url)),
       '@core': fileURLToPath(new URL('./src/core', import.meta.url)),
     },
   },
