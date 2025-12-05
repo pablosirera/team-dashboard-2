@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import BaseInput from '@core/components/BaseInput.vue'
 import BaseList from '@core/components/BaseList.vue'
-import BaseModal from '@core/components/BaseModal.vue'
 import { useFetch } from '@core/composables/useFetch'
 import { useUsers } from '@core/composables/useUsers'
 import { User } from '@/core/types/User'
-import { computed, reactive, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ROUTES_NAMES } from '@/core/constants/routes'
+import NewUserModal from '../components/NewUserModal.vue'
 
 const router = useRouter()
 const { setUsers, filteredUsers, search } = useUsers()
@@ -17,10 +16,6 @@ const { data: usersData, execute } = useFetch<User[]>(
 )
 
 const isNewUserModalOpen = ref(false)
-const newUser = reactive<Partial<User>>({
-  name: '',
-  email: '',
-})
 
 const users = computed(() => usersData.value || [])
 
@@ -97,25 +92,6 @@ const goToUserDetail = (user: User) => {
       </div>
     </div>
 
-    <BaseModal
-      v-model:open="isNewUserModalOpen"
-      title="Crear nuevo usuario"
-      @close="isNewUserModalOpen = false"
-    >
-      <template #default>
-        <BaseInput
-          v-model="newUser.name"
-          label="Nombre"
-          placeholder="Escribe el nombre del usuario"
-          required
-        />
-        <BaseInput
-          v-model="newUser.email"
-          label="Email"
-          placeholder="Escribe el email del usuario"
-          required
-        />
-      </template>
-    </BaseModal>
+    <NewUserModal v-model:open="isNewUserModalOpen" />
   </section>
 </template>

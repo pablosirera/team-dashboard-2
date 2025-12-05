@@ -34,11 +34,15 @@ const localTotalItems = computed(() => comments.value.length)
         <p class="text-sm text-slate-500">Total de comentarios {{ comments.length }}</p>
 
         <PaginationController v-model:page="localCurrentPage" :total-items="localTotalItems">
-          <template #default="{ nextPage, prevPage, canNext, canPrev, currentPage, pageSize }">
+          <template
+            #default="{ nextPage, prevPage, canNext, canPrev, currentPage, pageSize, totalPages }"
+          >
+            <p>Página {{ currentPage }} de {{ totalPages }}</p>
+
             <div class="flex items-center gap-2">
               <button
                 type="button"
-                class="cursor-pointer rounded border px-3 py-1 text-sm"
+                class="cursor-pointer rounded border px-3 py-1 text-sm disabled:opacity-40"
                 :disabled="!canPrev"
                 @click="prevPage"
               >
@@ -46,7 +50,7 @@ const localTotalItems = computed(() => comments.value.length)
               </button>
               <button
                 type="button"
-                class="cursor-pointer rounded border px-3 py-1 text-sm"
+                class="cursor-pointer rounded border px-3 py-1 text-sm disabled:opacity-40"
                 :disabled="!canNext"
                 @click="nextPage"
               >

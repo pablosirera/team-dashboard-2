@@ -7,9 +7,9 @@ defineOptions({
 withDefaults(
   defineProps<{
     label: string
-    type?: 'text' | 'email' | 'password'
+    type?: 'text' | 'email' | 'password' | 'tel'
     placeholder?: string
-    required: boolean
+    required?: boolean
   }>(),
   {
     type: 'text',

@@ -8,6 +8,7 @@ import BaseLayout from '../layout/BaseLayout.vue'
 import AuthLayout from '../layout/AuthLayout.vue'
 import { ROUTES_NAMES } from '../constants/routes'
 import { useAuth } from '../composables/useAuth'
+import { catsRoutes } from '@/domains/cats/router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +19,13 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       },
-      children: [...dashboardRoutes, ...usersRoutes, ...settingsRoutes, ...commentsRoutes],
+      children: [
+        ...dashboardRoutes,
+        ...usersRoutes,
+        ...settingsRoutes,
+        ...commentsRoutes,
+        ...catsRoutes,
+      ],
     },
     {
       path: '/auth',

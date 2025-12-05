@@ -3,12 +3,13 @@ import { RouterView } from 'vue-router'
 import { HomeIcon, UserGroupIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 import BaseSidebar from '@core/components/BaseSidebar.vue'
 import { NavLink } from '@core/types/Navigation'
-import { ChatBubbleLeftEllipsisIcon } from '@heroicons/vue/16/solid'
+import { ChatBubbleLeftEllipsisIcon, PhotoIcon } from '@heroicons/vue/16/solid'
 
 const navLinks: NavLink[] = [
   { label: 'Home', to: '/dashboard', icon: HomeIcon },
   { label: 'Usuarios', to: '/users', icon: UserGroupIcon },
   { label: 'Comentarios', to: '/comments', icon: ChatBubbleLeftEllipsisIcon },
+  { label: 'Gatos', to: '/cats', icon: PhotoIcon },
   { label: 'Ajustes', to: '/settings', icon: Cog6ToothIcon },
 ]
 
