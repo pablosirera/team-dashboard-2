@@ -4,10 +4,12 @@ import { computed, ref } from 'vue'
 import { Comment } from '../types/Comment'
 import BaseList from '@/core/components/BaseList.vue'
 import PaginationController from '@/core/components/PaginationController.vue'
+import NewCommentModal from '../components/NewCommentModal.vue'
 
 const { data, execute } = useFetch<Comment[]>('https://jsonplaceholder.typicode.com/comments')
 const comments = computed(() => data.value || [])
 
+const isNewCommentModalOpen = ref(false)
 const localCurrentPage = ref(1)
 const localTotalItems = computed(() => comments.value.length)
 </script>
@@ -19,6 +21,14 @@ const localTotalItems = computed(() => comments.value.length)
         <h1 class="text-3xl font-semibold text-slate-900">Comentarios</h1>
         <p class="text-slate-600">Comentarios hechos por los usuarios.</p>
       </div>
+
+      <button
+        type="button"
+        class="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+        @click="isNewCommentModalOpen = true"
+      >
+        Crear comentario
+      </button>
     </header>
 
     <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -72,5 +82,7 @@ const localTotalItems = computed(() => comments.value.length)
         </PaginationController>
       </div>
     </div>
+
+    <NewCommentModal v-model:open="isNewCommentModalOpen" />
   </section>
 </template>

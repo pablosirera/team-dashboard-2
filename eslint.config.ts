@@ -42,5 +42,11 @@ export default defineConfig([
       },
     },
   },
+  {
+    files: ['**/*.spec.{js,ts,jsx,tsx}', 'tests/**/*.{js,ts,jsx,tsx}'],
+    rules: {
+      'vue/one-component-per-file': 'off',
+    },
+  },
   skipFormatting,
 ])

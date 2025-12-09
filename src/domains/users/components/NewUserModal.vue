@@ -4,10 +4,12 @@ import BaseModal from '@/core/components/BaseModal.vue'
 import { userFormSchema, UserFormValues } from '../schemas/userForm'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useField, useForm } from 'vee-validate'
+import { watchDebounced } from '@vueuse/core'
+import { ref } from 'vue'
 
 const isNewUserModalOpen = defineModel<boolean>('isNewUserModalOpen', { default: false })
 
-const { handleSubmit, resetForm, errors } = useForm<UserFormValues>({
+const { handleSubmit, resetForm, errors, values } = useForm<UserFormValues>({
   validationSchema: toTypedSchema(userFormSchema),
   initialValues: {
     role: 'moderator',
@@ -21,16 +23,59 @@ const { value: language } = useField<UserFormValues['language']>('language')
 const { value: phone } = useField<UserFormValues['phone']>('phone')
 const { value: nickname } = useField<UserFormValues['nickname']>('nickname')
 
+const draftKey = 'new-user-form-draft'
+
+type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
+const saveStatus = ref<SaveStatus>('idle')
+
 const roles: UserFormValues['role'][] = ['admin', 'user', 'moderator']
 const languages: UserFormValues['language'][] = ['es', 'en', 'fr', 'de']
+
+const loadDraft = () => {
+  const raw = localStorage.getItem(draftKey)
+  if (!raw) return
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<UserFormValues>
+    resetForm({ values: parsed })
+  } catch (err) {
+    console.error('Error cargando borrador del formulario', err)
+  }
+}
+
+loadDraft()
+
+watchDebounced(
+  values,
+  (newValues: UserFormValues) => {
+    try {
+      saveStatus.value = 'saving'
+      localStorage.setItem(draftKey, JSON.stringify(newValues))
+      saveStatus.value = 'saved'
+      setTimeout(() => {
+        if (saveStatus.value === 'saved') saveStatus.value = 'idle'
+      }, 1500)
+    } catch (err) {
+      console.error('Error guardando borrador', err)
+      saveStatus.value = 'error'
+    }
+  },
+  {
+    debounce: 1500,
+    maxWait: 3000,
+    deep: true,
+  },
+)
 
 const closeModal = () => {
   isNewUserModalOpen.value = false
   resetForm()
+  saveStatus.value = 'idle'
 }
 
 const sendNewUserData = handleSubmit((values) => {
   console.log('Nuevo usuario creado (válido):', values)
+  localStorage.removeItem(draftKey)
   closeModal()
 })
 </script>
@@ -125,6 +170,16 @@ const sendNewUserData = handleSubmit((values) => {
             {{ errors.nickname }}
           </p>
         </div>
+
+        <p class="mt-1 text-xs text-slate-500">
+          <span v-if="saveStatus === 'saving'">Guardando borrador…</span>
+          <span v-else-if="saveStatus === 'saved'" class="text-emerald-600">
+            Borrador guardado ✓
+          </span>
+          <span v-else-if="saveStatus === 'error'" class="text-red-600">
+            Error al guardar el borrador
+          </span>
+        </p>
       </form>
     </template>
   </BaseModal>
