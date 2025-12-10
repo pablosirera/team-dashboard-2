@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "DOM"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noEmit": true,
+    "types": ["vite/client", "node", "vitest/globals", "@testing-library/jest-dom"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@core/*": ["src/core/*"],
+      "@auth/*": ["src/domains/auth/*"],
+      "@dashboard/*": ["src/domains/dashboard/*"],
+      "@settings/*": ["src/domains/settings/*"],
+      "@users/*": ["src/domains/users/*"],
+      "@comments/*": ["src/domains/comments/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.*"]
+}

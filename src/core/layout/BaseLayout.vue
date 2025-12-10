@@ -1,0 +1,45 @@
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+import { HomeIcon, UserGroupIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
+import BaseSidebar from '@core/components/BaseSidebar.vue'
+import { NavLink } from '@core/types/Navigation'
+import { ChatBubbleLeftEllipsisIcon, PhotoIcon } from '@heroicons/vue/16/solid'
+
+const navLinks: NavLink[] = [
+  { label: 'Home', to: '/dashboard', icon: HomeIcon },
+  { label: 'Usuarios', to: '/users', icon: UserGroupIcon },
+  { label: 'Comentarios', to: '/comments', icon: ChatBubbleLeftEllipsisIcon },
+  { label: 'Gatos', to: '/cats', icon: PhotoIcon },
+  { label: 'Ajustes', to: '/settings', icon: Cog6ToothIcon },
+]
+
+const currentUser = 'Pablo Sirera'
+</script>
+
+<template>
+  <div class="flex min-h-screen bg-slate-50 text-slate-900">
+    <BaseSidebar :nav-links="navLinks" :current-user="currentUser" />
+
+    <main class="flex-1 p-8">
+      <RouterView v-slot="{ Component }">
+        <Transition name="fade-page" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
+    </main>
+  </div>
+</template>
+
+<style scoped>
+.fade-page-enter-active,
+.fade-page-leave-active {
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+.fade-page-enter-from,
+.fade-page-leave-to {
+  opacity: 0;
+  transform: translateY(2px);
+}
+</style>

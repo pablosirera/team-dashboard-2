@@ -1,52 +1,7 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { HomeIcon, UserGroupIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
-
-const navLinks = [
-  { label: 'Home', to: '/dashboard', icon: HomeIcon },
-  { label: 'Usuarios', to: '/users', icon: UserGroupIcon },
-  { label: 'Ajustes', to: '/settings', icon: Cog6ToothIcon },
-]
-
-const currentUser = 'Pablo Sirera'
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="flex min-h-screen bg-slate-50 text-slate-900">
-    <aside class="flex w-64 flex-col border-r border-slate-200 bg-white">
-      <div class="px-6 py-5">
-        <p class="text-lg font-semibold tracking-tight text-slate-900">Team Dashboard</p>
-        <p class="text-sm text-slate-500">Administra tu equipo</p>
-      </div>
-
-      <nav class="mt-4 space-y-1 px-2">
-        <RouterLink
-          v-for="item in navLinks"
-          :key="item.to"
-          :to="item.to"
-          class="block rounded-lg px-3 py-2 text-sm font-medium transition"
-          v-slot="{ isActive }"
-          :class="isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'"
-        >
-          <div class="flex items-center gap-3">
-            <component
-              :is="item.icon"
-              class="h-5 w-5"
-              :class="isActive ? 'text-slate-900' : 'text-slate-400'"
-            />
-            <span>{{ item.label }}</span>
-          </div>
-        </RouterLink>
-      </nav>
-
-      <div class="mt-auto border-t border-slate-200 px-6 py-4">
-        <p class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Usuario</p>
-        <p class="text-sm font-medium text-slate-900">{{ currentUser }}</p>
-      </div>
-    </aside>
-
-    <main class="flex-1 p-8">
-      <RouterView />
-    </main>
-  </div>
+  <RouterView />
 </template>
